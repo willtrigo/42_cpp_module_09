@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   StreamWriterUtilities.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 22:47:45 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/02 15:10:22 by dande-je         ###   ########.fr       */
+/*   Created: 2025/11/02 14:55:50 by dande-je          #+#    #+#             */
+/*   Updated: 2025/11/02 14:55:58 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "infrastructure/io/StreamWriter.hpp"
-#include "presentation/cli/CliController.hpp"
-#include "presentation/cli/CliView.hpp"
 
-#include <cstdlib>
+#include <iostream>
+#include <ostream>
 
-int main(int argc, char** argv) {
-  StreamWriter writer;
-
-  CliView view(writer);
-  CliController controller(view);
-  
-  return controller.run(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+void StreamWriter::print(std::ostream& ostr, const std::string& str,
+                         bool newLine) {
+  ostr << str;
+  if (newLine) {
+    ostr << std::endl;
+  }
 }

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   IStreamWriter.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 22:47:45 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/02 15:10:22 by dande-je         ###   ########.fr       */
+/*   Created: 2025/11/02 14:54:23 by dande-je          #+#    #+#             */
+/*   Updated: 2025/11/02 14:54:33 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "infrastructure/io/StreamWriter.hpp"
-#include "presentation/cli/CliController.hpp"
-#include "presentation/cli/CliView.hpp"
+#ifndef ISTREAM_WRITER_HPP
+#define ISTREAM_WRITER_HPP
 
-#include <cstdlib>
+#include <ostream>
+#include <string>
 
-int main(int argc, char** argv) {
-  StreamWriter writer;
+class IStreamWriter {
+ public:
+  virtual ~IStreamWriter() {}
+  virtual void print(std::ostream& ostr, const std::string& str,
+                     bool newLine) = 0;
+};
 
-  CliView view(writer);
-  CliController controller(view);
-  
-  return controller.run(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
-}
+#endif  // ISTREAM_WRITER_HPP

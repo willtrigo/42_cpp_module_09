@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   CliControllerConstructor.cpp                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 22:47:45 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/02 15:10:22 by dande-je         ###   ########.fr       */
+/*   Created: 2025/11/02 14:38:25 by dande-je          #+#    #+#             */
+/*   Updated: 2025/11/02 14:38:36 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "infrastructure/io/StreamWriter.hpp"
 #include "presentation/cli/CliController.hpp"
 #include "presentation/cli/CliView.hpp"
 
-#include <cstdlib>
+#include <stdexcept>
 
-int main(int argc, char** argv) {
-  StreamWriter writer;
+CliController::CliController(CliView& view) : m_view(view) {}
 
-  CliView view(writer);
-  CliController controller(view);
-  
-  return controller.run(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+CliController::CliController(const CliController& other)
+    : m_view(other.m_view) {}
+
+CliController::~CliController() {}
+
+CliController& CliController::operator=(const CliController& other) {
+  if (this == &other) {
+    return *this;
+  }
+  throw std::runtime_error("CliController assignment is not allowed");
 }

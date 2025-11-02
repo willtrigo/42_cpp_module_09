@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   StreamWriterConstructor.cpp                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 22:47:45 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/02 15:10:22 by dande-je         ###   ########.fr       */
+/*   Created: 2025/11/02 14:55:31 by dande-je          #+#    #+#             */
+/*   Updated: 2025/11/02 14:55:39 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "infrastructure/io/StreamWriter.hpp"
-#include "presentation/cli/CliController.hpp"
-#include "presentation/cli/CliView.hpp"
 
-#include <cstdlib>
+#include <stdexcept>
 
-int main(int argc, char** argv) {
-  StreamWriter writer;
+StreamWriter::StreamWriter() {}
 
-  CliView view(writer);
-  CliController controller(view);
-  
-  return controller.run(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+StreamWriter::StreamWriter(const StreamWriter& /*unused*/) {}
+
+StreamWriter::~StreamWriter() {}
+
+StreamWriter& StreamWriter::operator=(const StreamWriter& /*unused*/) {
+  throw std::runtime_error("StreamWriter assignment is not allowed");
 }
