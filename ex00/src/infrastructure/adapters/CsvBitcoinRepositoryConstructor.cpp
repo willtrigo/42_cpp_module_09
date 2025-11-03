@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CliControllerUtilities.cpp                         :+:      :+:    :+:   */
+/*   CsvBitcoinRepositoryConstructor.cpp                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/02 14:40:27 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/02 16:38:23 by dande-je         ###   ########.fr       */
+/*   Created: 2025/11/02 16:03:16 by dande-je          #+#    #+#             */
+/*   Updated: 2025/11/02 16:07:17 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "infrastructure/adapters/CsvBitcoinRepository.hpp"
-#include "presentation/cli/CliController.hpp"
 
-bool CliController::run(int argc, char** argv) {
-  if (argc != MAX_SIZE_ARGS) {
-    this->m_view.displayError("could not open file.");
-    return false;
+CsvBitcoinRepository::CsvBitcoinRepository() { loadData(); }
+
+CsvBitcoinRepository::CsvBitcoinRepository(const CsvBitcoinRepository& other)
+    : m_price(other.m_price) {}
+
+CsvBitcoinRepository::~CsvBitcoinRepository() {}
+
+CsvBitcoinRepository& CsvBitcoinRepository::operator=(
+    const CsvBitcoinRepository& other) {
+  if (this != &other) {
+    m_price = other.m_price;
   }
-  (void)argv;
-  try {
-    CsvBitcoinRepository repository;
-  } catch (const std::exception& exception) {
-    this->m_view.displayError(exception.what());
-    return false;
-  }
-  return true;
+  return *this;
 }
