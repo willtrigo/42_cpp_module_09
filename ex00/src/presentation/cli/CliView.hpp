@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 14:42:34 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/02 15:10:06 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:32:16 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class CliView {
 
   void displayUsage(const std::string& programName) const;
   void displayError(const std::string& str) const;
+  void displayLine(const std::string& str) const;
 
  private:
   CliView(const CliView& other);

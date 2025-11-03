@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 14:43:16 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/02 16:16:02 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:33:04 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void CliView::displayUsage(const std::string& programName) const {
 
 void CliView::displayError(const std::string& str) const {
   this->m_writer.print(std::cerr, TerminalColor::setColor(RED, "Error: " + str),
+                       true);
+}
+
+void CliView::displayLine(const std::string& str) const {
+  this->m_writer.print(std::cout, TerminalColor::setColor(GREEN, str),
                        true);
 }
 

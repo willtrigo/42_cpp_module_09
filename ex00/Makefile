@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/02 14:38:54 by dande-je          #+#    #+#              #
-#    Updated: 2025/11/03 00:35:08 by dande-je         ###   ########.fr        #
+#    Updated: 2025/11/03 15:35:25 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS_SERVICES_DIR               := $(SRCS_APPLICATION_DIR)services/
 
 SRCS_DOMAIN_DIR                 := $(SRCS_DIR)domain/
 SRCS_ENTITIES_DIR               := $(SRCS_DOMAIN_DIR)entities/
+SRCS_USE_CASES_DIR              := $(SRCS_DOMAIN_DIR)use_cases/
 
 SRCS_INFRASTRUCTURE_DIR         := $(SRCS_DIR)infrastructure/
 SRCS_ADAPTER_DIR                := $(SRCS_INFRASTRUCTURE_DIR)adapters/
@@ -66,6 +67,8 @@ SRCS_FILES                      += $(addprefix $(SRCS_SERVICES_DIR), ExchangeSer
 
 SRCS_FILES                      += $(addprefix $(SRCS_ENTITIES_DIR), BitcoinExchangeConstructor.cpp \
 																	 BitcoinExchangeUtilities.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_USE_CASES_DIR), CalculateValueConstructor.cpp \
+																	 CalculateValueUtilities.cpp)
 
 SRCS_FILES                      += $(addprefix $(SRCS_ADAPTER_DIR), CsvBitcoinRepositoryConstructor.cpp \
 																	 CsvBitcoinRepositoryUtilities.cpp)

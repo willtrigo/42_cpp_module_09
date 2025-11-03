@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:44:29 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/03 11:48:46 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:20:33 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ class CalculateValueUseCase {
 
   CalculateValueUseCase& operator=(const CalculateValueUseCase& other);
 
-  void execute(const std::string& inputFilePath) const;
+  std::string parseAndProcessLine(const std::string& line) const;
 
  private:
   const ExchangeService& m_service;
 
-  void parseAndProcessLine(const std::string& line) const;
   std::pair<std::string, double> parseLine(const std::string& line) const;
+  static void strTrim(std::string& str);
 };
 
 #endif  // CALCULATE_VALUE_USE_CASE_HPP
