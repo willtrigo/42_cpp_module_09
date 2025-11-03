@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/02 14:38:54 by dande-je          #+#    #+#              #
-#    Updated: 2025/11/02 14:56:22 by dande-je         ###   ########.fr        #
+#    Updated: 2025/11/03 00:35:08 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,16 +28,14 @@ RESET                           := \033[0m
 SRCS_DIR                        := src/
 
 SRCS_APPLICATION_DIR            := $(SRCS_DIR)application/
-SRCS_COMMANDS_DIR               := $(SRCS_APPLICATION_DIR)commands/
+SRCS_SERVICES_DIR               := $(SRCS_APPLICATION_DIR)services/
 
 SRCS_DOMAIN_DIR                 := $(SRCS_DIR)domain/
-SRCS_MODELS_DIR                 := $(SRCS_DOMAIN_DIR)models/
-SRCS_ENTITIES_DIR               := $(SRCS_MODELS_DIR)entities/
-SRCS_SERVICES_DIR               := $(SRCS_MODELS_DIR)services/
+SRCS_ENTITIES_DIR               := $(SRCS_DOMAIN_DIR)entities/
 
 SRCS_INFRASTRUCTURE_DIR         := $(SRCS_DIR)infrastructure/
+SRCS_ADAPTER_DIR                := $(SRCS_INFRASTRUCTURE_DIR)adapters/
 SRCS_IO_DIR                     := $(SRCS_INFRASTRUCTURE_DIR)io/
-SRCS_SEEDS_DIR                  := $(SRCS_INFRASTRUCTURE_DIR)seeds/
 
 SRCS_PRESENTATION_DIR           := $(SRCS_DIR)presentation/
 SRCS_CLI_DIR                    := $(SRCS_PRESENTATION_DIR)cli/
@@ -63,6 +61,14 @@ SLEEP                           := sleep 0.01
 NAME_OUTPUT                     = btc
 NAME                            = $(BIN_DIR)$(NAME_OUTPUT)
 
+SRCS_FILES                      += $(addprefix $(SRCS_SERVICES_DIR), ExchangeServiceConstructor.cpp \
+																	 ExchangeServiceUtilities.cpp)
+
+SRCS_FILES                      += $(addprefix $(SRCS_ENTITIES_DIR), BitcoinExchangeConstructor.cpp \
+																	 BitcoinExchangeUtilities.cpp)
+
+SRCS_FILES                      += $(addprefix $(SRCS_ADAPTER_DIR), CsvBitcoinRepositoryConstructor.cpp \
+																	 CsvBitcoinRepositoryUtilities.cpp)
 SRCS_FILES                      += $(addprefix $(SRCS_IO_DIR), StreamWriterConstructor.cpp \
 																	 StreamWriterUtilities.cpp)
 

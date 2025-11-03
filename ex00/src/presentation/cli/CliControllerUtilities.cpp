@@ -6,10 +6,11 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 14:40:27 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/02 16:38:23 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/03 00:14:18 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "application/services/ExchangeService.hpp"
 #include "infrastructure/adapters/CsvBitcoinRepository.hpp"
 #include "presentation/cli/CliController.hpp"
 
@@ -21,6 +22,7 @@ bool CliController::run(int argc, char** argv) {
   (void)argv;
   try {
     CsvBitcoinRepository repository;
+    ExchangeService service(repository);
   } catch (const std::exception& exception) {
     this->m_view.displayError(exception.what());
     return false;
