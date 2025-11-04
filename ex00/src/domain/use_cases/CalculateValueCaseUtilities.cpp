@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CalculatevalueCaseUtilities.cpp                    :+:      :+:    :+:   */
+/*   CalculateValueCaseUtilities.cpp                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:59:37 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/03 20:22:51 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:57:03 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "domain/use_cases/CalculateValueCase.hpp"
-#include <iomanip>
-#include <string>
-#include <sstream>
-#include <utility>
-#include <stdexcept>
 
-std::string CalculateValueUseCase::parseAndProcessLine(const std::string& line) const {
+#include <sstream>
+#include <string>
+
+const double CalculateValueUseCase::MAX_VALUE = 1000.0;
+
+std::string CalculateValueUseCase::parseAndProcessLine(
+    const std::string& line) const {
   std::pair<std::string, double> parsed = parseLine(line);
-  double result = this->m_service.calculateExchangeValue(parsed.first, parsed.second);
+  double result =
+      this->m_service.calculateExchangeValue(parsed.first, parsed.second);
   std::ostringstream str;
 
-  str << parsed.first << " => " << parsed.second << " = ";
-  str << std::fixed << std::setprecision(2) << result;
+  str << parsed.first << " => " << parsed.second << " = " << result;
 
   return str.str();
 }
 
-std::pair<std::string, double> CalculateValueUseCase::parseLine(const std::string& line) const {
+std::pair<std::string, double> CalculateValueUseCase::parseLine(
+    const std::string& line) {
   std::size_t pipePos = line.find('|');
   if (pipePos == std::string::npos) {
-    throw std::invalid_argument("bad input => ", line);
+    throw std::invalid_argument("bad input => " + line);
   }
 
   std::string dateStr = line.substr(0, pipePos);
@@ -39,6 +41,23 @@ std::pair<std::string, double> CalculateValueUseCase::parseLine(const std::strin
 
   strTrim(dateStr);
   strTrim(valueStr);
+
+  if (dateStr.empty() || valueStr.empty()) {
+    throw std::invalid_argument("bad input => " + line);
+  }
+
+  std::istringstream iss(valueStr);
+  double value;
+  iss >> value;
+  if (iss.fail() || !iss.eof()) {
+    throw std::invalid_argument("bad input => " + line);
+  }
+
+  if (value > MAX_VALUE) {
+    throw std::invalid_argument("too large a number.");
+  }
+
+  return std::make_pair(dateStr, value);
 }
 
 void CalculateValueUseCase::strTrim(std::string& str) {
