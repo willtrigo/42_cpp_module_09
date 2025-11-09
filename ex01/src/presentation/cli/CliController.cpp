@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:24:40 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/05 19:24:57 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/09 16:38:21 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,12 @@ CliController& CliController::operator=(const CliController& other) {
     return *this;
   }
   throw std::runtime_error("CliController assignment is not allowed");
+}
+
+bool CliController::run(int argc, char** argv) {
+  if (argc != MAX_SIZE_ARGS) {
+    this->m_view.displayUsage(std::string(argv[NAME_PROGRAM]));
+    return false;
+  }
+  return true;
 }

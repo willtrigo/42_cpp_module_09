@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/05 19:12:34 by dande-je          #+#    #+#              #
-#    Updated: 2025/11/05 19:38:46 by dande-je         ###   ########.fr        #
+#    Updated: 2025/11/09 16:41:30 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,15 +62,11 @@ SLEEP                           := sleep 0.01
 NAME_OUTPUT                     = rpn
 NAME                            = $(BIN_DIR)$(NAME_OUTPUT)
 
-SRCS_FILES                      += $(addprefix $(SRCS_IO_DIR), StreamWriterConstructor.cpp \
-																	 StreamWriterUtilities.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_IO_DIR), StreamWriter.cpp)
 
-SRCS_FILES                      += $(addprefix $(SRCS_CLI_DIR), CliControllerConstructor.cpp \
-																	 CliControllerUtilities.cpp \
-																	 CliViewConstructor.cpp \
-																	 CliViewUtilities.cpp)
-SRCS_FILES                      += $(addprefix $(SRCS_UTILS_DIR), TerminalColorConstructor.cpp \
-																	 TerminalColorUtilities.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_CLI_DIR), CliController.cpp \
+																	 CliView.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_UTILS_DIR), TerminalColor.cpp)
 
 SRCS_FILES                      += $(addprefix $(SRCS_DIR), main.cpp)
 
