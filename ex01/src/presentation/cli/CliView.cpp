@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CliViewConstructor.cpp                             :+:      :+:    :+:   */
+/*   CliView.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:26:02 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/09 16:39:16 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:44:48 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void CliView::displayUsage(const std::string& programName) const {
 void CliView::displayError(const std::string& str) const {
   this->m_writer.print(std::cerr, TerminalColor::setColor(RED, "Error: " + str),
                        true);
+}
+
+void CliView::displayResult(const std::string& str) const {
+  displaySeparator();
+  displayTitle(str);
+  displaySeparator();
 }
 
 void CliView::displaySeparator() const {
