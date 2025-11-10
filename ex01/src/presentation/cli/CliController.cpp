@@ -6,11 +6,12 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:24:40 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/10 16:46:07 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:17:42 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "application/services/RpnCalculator.hpp"
+#include "application/use_cases/EvaluateRpnUsecase.hpp"
 #include "domain/entities/Rpn.hpp"
 #include "infrastructure/adapters/StackAdapter.hpp"
 #include "presentation/cli/CliController.hpp"
@@ -43,12 +44,10 @@ bool CliController::run(int argc, char** argv) {
     Rpn expression((std::string(argv[LITERAL_ARGUMENT_INDEX])));
     StackAdapter stack;
     RpnCalculator calculator(stack);
+    EvaluateRpnUsecase useCase(calculator);
 
-    const std::list<std::string>& tokens = expression.getTokens();
-    for (std::list<std::string>::const_iterator it = tokens.begin();
-         it != tokens.end(); ++it) {
-      this->m_view.displayResult(*it);
-    }
+    double result = useCase.execute(expression);
+    this->m_view.displayResult(result);
   } catch (const std::exception& exception) {
     this->m_view.displayError(exception.what());
     return false;

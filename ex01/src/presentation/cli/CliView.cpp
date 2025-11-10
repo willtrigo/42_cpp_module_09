@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:26:02 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/10 13:44:48 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:22:06 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "presentation/utils/TerminalColor.hpp"
 
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 
@@ -43,24 +44,10 @@ void CliView::displayError(const std::string& str) const {
                        true);
 }
 
-void CliView::displayResult(const std::string& str) const {
-  displaySeparator();
-  displayTitle(str);
-  displaySeparator();
-}
+void CliView::displayResult(const double& value) const {
+  std::ostringstream str;
+  str << value;
 
-void CliView::displaySeparator() const {
-  this->m_writer.print(
-      std::cout,
-      TerminalColor::setColor(YELLOW, std::string(SEPARATOR_LENGTH, '-')),
-      true);
-}
-
-void CliView::displayTitle(const std::string& str) const {
-  this->m_writer.print(
-      std::cout,
-      TerminalColor::setColor(BLUE, std::string(TITLE_BORDER_LENGTH, '=')) +
-          " " + TerminalColor::setColor(GREEN, str) + " " +
-          TerminalColor::setColor(BLUE, std::string(TITLE_BORDER_LENGTH, '=')),
-      true);
+  this->m_writer.print(std::cout, TerminalColor::setColor(GREEN, str.str()),
+                       true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RpnCalcaulator.cpp                                 :+:      :+:    :+:   */
+/*   RpnCalculator.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 16:28:46 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/10 16:45:35 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:31:50 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void RpnCalculator::processToken(const std::string& token){
       throw std::runtime_error("insuficient operands");
     }
 
-    double leftSide = this->m_stack.pop();
     double rightSide = this->m_stack.pop();
+    double leftSide = this->m_stack.pop();
     double result = applyOperation(token, leftSide, rightSide);
     this->m_stack.push(result);
   } else {

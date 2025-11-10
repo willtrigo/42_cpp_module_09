@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/05 19:12:34 by dande-je          #+#    #+#              #
-#    Updated: 2025/11/10 17:04:07 by dande-je         ###   ########.fr        #
+#    Updated: 2025/11/10 17:34:05 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ SRCS_DIR                        := src/
 
 SRCS_APPLICATION_DIR            := $(SRCS_DIR)application/
 SRCS_SERVICES_DIR               := $(SRCS_APPLICATION_DIR)services/
+SRCS_USE_CASES_DIR              := $(SRCS_APPLICATION_DIR)use_cases/
 
 SRCS_DOMAIN_DIR                 := $(SRCS_DIR)domain/
 SRCS_ENTITIES_DIR               := $(SRCS_DOMAIN_DIR)entities/
-SRCS_USE_CASES_DIR              := $(SRCS_DOMAIN_DIR)use_cases/
 
 SRCS_INFRASTRUCTURE_DIR         := $(SRCS_DIR)infrastructure/
 SRCS_ADAPTER_DIR                := $(SRCS_INFRASTRUCTURE_DIR)adapters/
@@ -59,14 +59,15 @@ SLEEP                           := sleep 0.01
 #                                   FILES                                      #
 #******************************************************************************#
 
-NAME_OUTPUT                     = rpn
+NAME_OUTPUT                     = RPN
 NAME                            = $(BIN_DIR)$(NAME_OUTPUT)
 
-SRCS_FILES                      += $(addprefix $(SRCS_APPLICATION_DIR), RpnCalculator.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_SERVICES_DIR), RpnCalculator.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_USE_CASES_DIR), EvaluateRpnUseCase.cpp)
 
 SRCS_FILES                      += $(addprefix $(SRCS_ENTITIES_DIR), Rpn.cpp)
 
-SRCS_FILES                      += $(addprefix $(SRCS_ADAPTER_DIR), Stackadapter.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_ADAPTER_DIR), StackAdapter.cpp)
 SRCS_FILES                      += $(addprefix $(SRCS_IO_DIR), StreamWriter.cpp)
 
 SRCS_FILES                      += $(addprefix $(SRCS_CLI_DIR), CliController.cpp \
