@@ -6,11 +6,13 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:24:40 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/10 14:08:47 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:46:07 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "application/services/RpnCalculator.hpp"
 #include "domain/entities/Rpn.hpp"
+#include "infrastructure/adapters/StackAdapter.hpp"
 #include "presentation/cli/CliController.hpp"
 #include "presentation/cli/CliView.hpp"
 
@@ -39,6 +41,9 @@ bool CliController::run(int argc, char** argv) {
 
   try {
     Rpn expression((std::string(argv[LITERAL_ARGUMENT_INDEX])));
+    StackAdapter stack;
+    RpnCalculator calculator(stack);
+
     const std::list<std::string>& tokens = expression.getTokens();
     for (std::list<std::string>::const_iterator it = tokens.begin();
          it != tokens.end(); ++it) {
