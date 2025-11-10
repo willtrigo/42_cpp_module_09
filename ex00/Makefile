@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/02 14:38:54 by dande-je          #+#    #+#              #
-#    Updated: 2025/11/03 20:40:24 by dande-je         ###   ########.fr        #
+#    Updated: 2025/11/10 18:55:52 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,25 +62,17 @@ SLEEP                           := sleep 0.01
 NAME_OUTPUT                     = btc
 NAME                            = $(BIN_DIR)$(NAME_OUTPUT)
 
-SRCS_FILES                      += $(addprefix $(SRCS_SERVICES_DIR), ExchangeServiceConstructor.cpp \
-																	 ExchangeServiceUtilities.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_SERVICES_DIR), ExchangeService.cpp)
 
-SRCS_FILES                      += $(addprefix $(SRCS_ENTITIES_DIR), BitcoinExchangeConstructor.cpp \
-																	 BitcoinExchangeUtilities.cpp)
-SRCS_FILES                      += $(addprefix $(SRCS_USE_CASES_DIR), CalculateValueCaseConstructor.cpp \
-																	 CalculateValueCaseUtilities.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_ENTITIES_DIR), BitcoinExchange.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_USE_CASES_DIR), CalculateValueCase.cpp)
 
-SRCS_FILES                      += $(addprefix $(SRCS_ADAPTER_DIR), CsvBitcoinRepositoryConstructor.cpp \
-																	 CsvBitcoinRepositoryUtilities.cpp)
-SRCS_FILES                      += $(addprefix $(SRCS_IO_DIR), StreamWriterConstructor.cpp \
-																	 StreamWriterUtilities.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_ADAPTER_DIR), CsvBitcoinRepository.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_IO_DIR), StreamWriter.cpp)
 
-SRCS_FILES                      += $(addprefix $(SRCS_CLI_DIR), CliControllerConstructor.cpp \
-																	 CliControllerUtilities.cpp \
-																	 CliViewConstructor.cpp \
-																	 CliViewUtilities.cpp)
-SRCS_FILES                      += $(addprefix $(SRCS_UTILS_DIR), TerminalColorConstructor.cpp \
-																	 TerminalColorUtilities.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_CLI_DIR), CliController.cpp \
+																	 CliView.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_UTILS_DIR), TerminalColor.cpp)
 
 SRCS_FILES                      += $(addprefix $(SRCS_DIR), main.cpp)
 

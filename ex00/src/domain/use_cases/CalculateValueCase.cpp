@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CalculateValueCaseUtilities.cpp                    :+:      :+:    :+:   */
+/*   CalculateValueCase.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 14:59:37 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/03 20:57:03 by dande-je         ###   ########.fr       */
+/*   Created: 2025/11/03 11:51:42 by dande-je          #+#    #+#             */
+/*   Updated: 2025/11/10 18:52:57 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "application/services/ExchangeService.hpp"
 #include "domain/use_cases/CalculateValueCase.hpp"
 
 #include <sstream>
 #include <string>
 
 const double CalculateValueUseCase::MAX_VALUE = 1000.0;
+
+CalculateValueUseCase::CalculateValueUseCase(const ExchangeService& service)
+    : m_service(service) {}
+
+CalculateValueUseCase::CalculateValueUseCase(const CalculateValueUseCase& other)
+    : m_service(other.m_service) {}
+
+CalculateValueUseCase::~CalculateValueUseCase() {}
+
+CalculateValueUseCase& CalculateValueUseCase::operator=(
+    const CalculateValueUseCase& other) {
+  if (this != &other) {
+    const_cast<ExchangeService&>(this->m_service) = other.m_service;
+  }
+  return *this;
+}
 
 std::string CalculateValueUseCase::parseAndProcessLine(
     const std::string& line) const {

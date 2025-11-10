@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CliViewUtilities.cpp                               :+:      :+:    :+:   */
+/*   CliView.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/02 14:43:16 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/03 15:33:04 by dande-je         ###   ########.fr       */
+/*   Created: 2025/11/02 14:42:55 by dande-je          #+#    #+#             */
+/*   Updated: 2025/11/10 18:52:50 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "infrastructure/io/IStreamWriter.hpp"
 #include "presentation/cli/CliView.hpp"
 #include "presentation/utils/TerminalColor.hpp"
 
 #include <iostream>
+#include <stdexcept>
 #include <string>
+
+CliView::CliView(IStreamWriter& writer) : m_writer(writer) {}
+
+CliView::CliView(const CliView& other) : m_writer(other.m_writer) {}
+
+CliView::~CliView() {}
+
+CliView& CliView::operator=(const CliView& other) {
+  if (this != &other) {
+    return *this;
+  }
+  throw std::runtime_error("CliView assignment is not allowed");
+}
 
 void CliView::displayUsage(const std::string& programName) const {
   this->m_writer.print(
@@ -29,8 +44,7 @@ void CliView::displayError(const std::string& str) const {
 }
 
 void CliView::displayLine(const std::string& str) const {
-  this->m_writer.print(std::cout, TerminalColor::setColor(GREEN, str),
-                       true);
+  this->m_writer.print(std::cout, TerminalColor::setColor(GREEN, str), true);
 }
 
 void CliView::displaySeparator() const {

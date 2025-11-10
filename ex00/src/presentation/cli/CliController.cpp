@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CliControllerUtilities.cpp                         :+:      :+:    :+:   */
+/*   CliController.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/02 14:40:27 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/03 15:33:40 by dande-je         ###   ########.fr       */
+/*   Created: 2025/11/02 14:38:25 by dande-je          #+#    #+#             */
+/*   Updated: 2025/11/10 18:52:51 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,24 @@
 #include "domain/use_cases/CalculateValueCase.hpp"
 #include "infrastructure/adapters/CsvBitcoinRepository.hpp"
 #include "presentation/cli/CliController.hpp"
+#include "presentation/cli/CliView.hpp"
 
 #include <fstream>
 #include <stdexcept>
+
+CliController::CliController(CliView& view) : m_view(view) {}
+
+CliController::CliController(const CliController& other)
+    : m_view(other.m_view) {}
+
+CliController::~CliController() {}
+
+CliController& CliController::operator=(const CliController& other) {
+  if (this == &other) {
+    return *this;
+  }
+  throw std::runtime_error("CliController assignment is not allowed");
+}
 
 bool CliController::run(int argc, char** argv) {
   if (argc != MAX_SIZE_ARGS) {
@@ -49,7 +64,7 @@ bool CliController::run(int argc, char** argv) {
       }
     }
 
-  inputFile.close();
+    inputFile.close();
   } catch (const std::exception& exception) {
     this->m_view.displayError(exception.what());
     return false;
