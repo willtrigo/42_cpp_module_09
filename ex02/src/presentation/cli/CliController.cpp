@@ -6,10 +6,11 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:42:44 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/10 19:02:22 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:44:15 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "domain/entities/IntegerSequence.hpp"
 #include "presentation/cli/CliController.hpp"
 #include "presentation/cli/CliView.hpp"
 
@@ -31,6 +32,8 @@ CliController& CliController::operator=(const CliController& other) {
 }
 
 bool CliController::run(int argc, char** argv) {
+  IntegerSequence sequence;
+
   if (argc != MAX_SIZE_ARGS) {
     this->m_view.displayUsage(std::string(argv[NAME_PROGRAM]));
     return false;
