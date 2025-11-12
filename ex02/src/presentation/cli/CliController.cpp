@@ -6,10 +6,11 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:42:44 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/12 15:20:41 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:45:52 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "application/use_cases/PmergeMe.hpp"
 #include "domain/entities/IntegerSequence.hpp"
 #include "infrastructure/adapters/DequeAdapter.hpp"
 #include "infrastructure/adapters/VectorAdapter.hpp"
@@ -48,6 +49,10 @@ bool CliController::run(int argc, char** argv) {
   try {
     VectorAdapter vectorAdapter;
     DequeAdapter dequeAdapter;
+
+    PmergeMe useCase;
+    useCase.execute(sequence, vectorAdapter);
+    useCase.execute(sequence, dequeAdapter);
   } catch (const std::exception& exception) {
     this->m_view.displayError(exception.what());
     return false;

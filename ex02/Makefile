@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/10 18:36:09 by dande-je          #+#    #+#              #
-#    Updated: 2025/11/12 15:20:08 by dande-je         ###   ########.fr        #
+#    Updated: 2025/11/12 15:44:30 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ RESET                           := \033[0m
 SRCS_DIR                        := src/
 
 SRCS_APPLICATION_DIR            := $(SRCS_DIR)application/
-SRCS_ENTITIES_DIR               := $(SRCS_APPLICATION_DIR)entities/
-SRCS_SERVICES_DIR              := $(SRCS_APPLICATION_DIR)services/
+SRCS_USE_CASES_DIR              := $(SRCS_APPLICATION_DIR)use_cases/
+SRCS_SERVICES_DIR               := $(SRCS_APPLICATION_DIR)services/
 
 SRCS_DOMAIN_DIR                 := $(SRCS_DIR)domain/
 SRCS_ENTITIES_DIR               := $(SRCS_DOMAIN_DIR)entities/
@@ -63,6 +63,7 @@ NAME_OUTPUT                     = PmergeMe
 NAME                            = $(BIN_DIR)$(NAME_OUTPUT)
 
 SRCS_FILES                      += $(addprefix $(SRCS_SERVICES_DIR), TimingService.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_USE_CASES_DIR), PmergeMe.cpp)
 
 SRCS_FILES                      += $(addprefix $(SRCS_ENTITIES_DIR), IntegerSequence.cpp)
 
