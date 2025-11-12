@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/10 18:36:09 by dande-je          #+#    #+#              #
-#    Updated: 2025/11/12 14:12:52 by dande-je         ###   ########.fr        #
+#    Updated: 2025/11/12 15:20:08 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ SRCS_FILES                      += $(addprefix $(SRCS_SERVICES_DIR), TimingServi
 SRCS_FILES                      += $(addprefix $(SRCS_ENTITIES_DIR), IntegerSequence.cpp)
 
 SRCS_FILES                      += $(addprefix $(SRCS_IO_DIR), StreamWriter.cpp)
-SRCS_FILES                      += $(addprefix $(SRCS_ADAPTER_DIR), VectorAdapter.cpp)
+SRCS_FILES                      += $(addprefix $(SRCS_ADAPTER_DIR), DequeAdapter.cpp \
+																	 VectorAdapter.cpp)
 
 SRCS_FILES                      += $(addprefix $(SRCS_CLI_DIR), CliController.cpp \
 																	 CliView.cpp)

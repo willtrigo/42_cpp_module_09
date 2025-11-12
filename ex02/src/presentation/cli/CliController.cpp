@@ -6,11 +6,12 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:42:44 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/12 14:14:02 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:20:41 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "domain/entities/IntegerSequence.hpp"
+#include "infrastructure/adapters/DequeAdapter.hpp"
 #include "infrastructure/adapters/VectorAdapter.hpp"
 #include "presentation/cli/CliController.hpp"
 #include "presentation/cli/CliView.hpp"
@@ -46,6 +47,7 @@ bool CliController::run(int argc, char** argv) {
 
   try {
     VectorAdapter vectorAdapter;
+    DequeAdapter dequeAdapter;
   } catch (const std::exception& exception) {
     this->m_view.displayError(exception.what());
     return false;
