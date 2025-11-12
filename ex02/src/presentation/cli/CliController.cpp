@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:42:44 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/12 15:45:52 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:27:06 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ bool CliController::run(int argc, char** argv) {
     PmergeMe useCase;
     useCase.execute(sequence, vectorAdapter);
     useCase.execute(sequence, dequeAdapter);
+
+    this->m_view.displayResult(sequence, useCase);
   } catch (const std::exception& exception) {
     this->m_view.displayError(exception.what());
     return false;

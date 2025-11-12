@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:23:56 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/12 15:53:10 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:33:13 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 
 class PmergeMe {
  public:
+  struct SortResult {
+    std::vector<int> sorted;
+    double elapsedTime;
+    std::string containerName;
+  };
   PmergeMe();
   PmergeMe(const PmergeMe& other);
   ~PmergeMe();
@@ -30,13 +35,9 @@ class PmergeMe {
   void execute(const IntegerSequence& sequence,
                ISequenceRepository<Container>& repository);
 
- private:
-  struct SortResult {
-    std::vector<int> sorted;
-    double elapsedTime;
-    std::string containerName;
-  };
+  const std::vector<SortResult>& getResult() const;
 
+ private:
   std::vector<SortResult> m_results;
 };
 
