@@ -6,10 +6,11 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:14:35 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/12 15:18:57 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/12 21:17:01 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "application/services/MergeInsertService.hpp"
 #include "infrastructure/adapters/DequeAdapter.hpp"
 
 #include <cstddef>
@@ -37,6 +38,7 @@ void DequeAdapter::load(const std::vector<int>& data) {
 
 void DequeAdapter::sort() {
   this->m_timer.start();
+  MergeInsertService<std::deque<int> >::sort(this->m_container);
   this->m_timer.stop();
 }
 

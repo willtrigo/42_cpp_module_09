@@ -6,10 +6,11 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:33:10 by dande-je          #+#    #+#             */
-/*   Updated: 2025/11/12 14:13:53 by dande-je         ###   ########.fr       */
+/*   Updated: 2025/11/12 21:07:38 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "application/services/MergeInsertService.hpp"
 #include "infrastructure/adapters/VectorAdapter.hpp"
 
 VectorAdapter::VectorAdapter() {}
@@ -33,6 +34,7 @@ void VectorAdapter::load(const std::vector<int>& data) {
 
 void VectorAdapter::sort() {
   this->m_timer.start();
+  MergeInsertService<std::vector<int> >::sort(this->m_container);
   this->m_timer.stop();
 }
 
